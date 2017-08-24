@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--通过set方法来初始化实例   类中必须有默认构造函数 以及set方法-->
+    <bean id="helloWorld" class="com.channel.spring.beans.HelloWorld">
+        <property name="name" value="spring"></property>
+    </bean>
+
+    <!--可以用index来指定是第几个参数 类中必须有制定的构造方法-->
+    <bean id="car" class="com.channel.spring.beans.Car">
+        <constructor-arg value="Baoma" index="0"></constructor-arg>
+        <constructor-arg value="Shanghai" index="1"></constructor-arg>
+        <constructor-arg value="10" index="2"></constructor-arg>
+    </bean>
+
+    <!-- 也可以指定参数的类型 类中必须有指定的构造方法-->
+    <bean id="car1" class="com.channel.spring.beans.Car">
+        <constructor-arg value="Benchi" type="java.lang.String"></constructor-arg>
+        <constructor-arg >
+            <value><![CDATA[<Shanghai>]]]></value>  <!--   ![CDATA[]] 能够带一个特殊字符  -->
+        </constructor-arg>
+        <constructor-arg value="3.1" type="double"></constructor-arg>
+    </bean>
+
+    <bean id="person" class="com.channel.spring.beans.Person">
+        <property name="name" value="Channel"></property>
+        <property name="car" ref="car1"></property>
+    </bean>
+
+</beans>
