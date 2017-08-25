@@ -1,5 +1,7 @@
 package com.channel.spring.beans;
 
+import com.channel.spring.list.MapPerson;
+import com.channel.spring.list.proPerson;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -27,7 +29,27 @@ public class Main {
         Car car1 =(Car) ctx.getBean("car1");
         System.out.println(car1);
 
-        Person person = (Person) ctx.getBean(Person.class);
+        Person person = (Person) ctx.getBean("person");
         System.out.println(person);
+
+        Person person1 = (Person) ctx.getBean("person1");
+        System.out.println(person1);
+
+        com.channel.spring.list.Person person2 = (com.channel.spring.list.Person) ctx.getBean("person2");
+        System.out.println(person2);
+
+        MapPerson person3 = (MapPerson) ctx.getBean("person3");
+        System.out.println(person3);
+
+        proPerson person4 = (proPerson) ctx.getBean("person4");
+        System.out.println(person4);
+
+        printLine();
+        com.channel.spring.list.Person person5 = (com.channel.spring.list.Person) ctx.getBean("person5");
+        System.out.println(person5);
+    }
+
+    public static void printLine(){
+        System.out.println("-------------------");
     }
 }

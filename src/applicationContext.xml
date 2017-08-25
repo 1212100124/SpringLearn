@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!--通过set方法来初始化实例   类中必须有默认构造函数 以及set方法-->
     <bean id="helloWorld" class="com.channel.spring.beans.HelloWorld">
@@ -26,7 +27,77 @@
 
     <bean id="person" class="com.channel.spring.beans.Person">
         <property name="name" value="Channel"></property>
-        <property name="car" ref="car1"></property>
+        <!--
+            用引用的方式进行赋值
+            <property name="car" ref="car1"></property>
+        -->
+        <!-- 内部直接初始化-->
+        <property name="car">
+            <bean class="com.channel.spring.beans.Car">
+                <constructor-arg value="Baoma" index="0"></constructor-arg>
+                <constructor-arg value="Shanghai" index="1"></constructor-arg>
+                <constructor-arg value="10" index="2"></constructor-arg>
+            </bean>
+        </property>
     </bean>
 
+    <bean id="person1" class="com.channel.spring.beans.Person">
+        <constructor-arg value="Ford"></constructor-arg>
+        <!--
+            null 值的专有标志  必须这么写<null/>
+            <constructor-arg ><null/></constructor-arg>
+        -->
+        <constructor-arg ref="car1"></constructor-arg>
+        <!-- Person需要设置car的 get方法 -->
+        <property name="car.count" value="10"></property>
+    </bean>
+
+    <!-- test for list-->
+    <bean id="person2" class="com.channel.spring.list.Person">
+
+        <constructor-arg value="jackie"></constructor-arg>
+        <constructor-arg >
+            <!-- list 属性的配置 -->
+            <list>
+                <ref bean="car"></ref>
+                <ref bean="car1"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- test for map-->
+    <bean id="person3" class="com.channel.spring.list.MapPerson">
+        <constructor-arg value="panda"></constructor-arg>
+        <constructor-arg>
+            <map>
+                <entry key="Jackie" value-ref="car"></entry>
+                <entry key="Mike" value-ref="car1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- test for property -->
+    <bean id="person4" class="com.channel.spring.list.proPerson">
+        <constructor-arg value="cat"></constructor-arg>
+        <constructor-arg>
+            <props>
+                <prop key="mike">man</prop>
+                <prop key="jackie">man</prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+    <!-- 用util:list 来复用其他bean-->
+    <util:list id="cars">
+        <ref bean="car"></ref>
+        <ref bean="car1"></ref>
+    </util:list>
+
+    <bean id="person5" class="com.channel.spring.list.Person">
+        <property name="name" value="Nancy"></property>
+        <property name="cars" ref="cars"></property>
+    </bean>
+
+    <!--  这种方式比较简约-->
+    <bean id ="person6" class="com.channel.spring.beans.Person" p:name="papa" p:car-ref="car"></bean>
 </beans>

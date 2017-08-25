@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置一个abtract bean 用来被继承-->
+    <bean id="carAbstract" class="com.channel.spring.extendsAndDep.Car" p:name="jackie"
+          p:brand="benchi" abstract="true"></bean>
+
+    <!-- 继承父类bean 用parent来表示-->
+    <bean id="car" class="com.channel.spring.extendsAndDep.Car" parent="carAbstract"
+    p:brand="baoma"></bean>
+
+    <!--  作用域设置 ，默认是singleton的-->
+    <bean id="car1" class="com.channel.spring.extendsAndDep.Car" parent="car"
+          p:brand="ford" scope="prototype"></bean>
+</beans>

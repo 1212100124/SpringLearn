@@ -1,7 +1,7 @@
-package com.channel.spring.beans;
+package com.channel.spring.extendsAndDep;
 
 /**
- * Created by jackie on 17-8-24.
+ * Created by jackie on 17-8-25.
  */
 public class Person {
     private String name;
@@ -22,14 +22,6 @@ public class Person {
 
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Car getCar() {
-        return car;
     }
 
     @Override

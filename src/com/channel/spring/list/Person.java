@@ -1,42 +1,46 @@
-package com.channel.spring.beans;
+package com.channel.spring.list;
+
+import com.channel.spring.beans.Car;
+
+import java.util.List;
 
 /**
  * Created by jackie on 17-8-24.
  */
 public class Person {
     private String name;
-    private Car car;
+    private List<Car> cars;
 
     public Person(){
 
     }
-
-    public Person(String name, Car car) {
+    public Person(String name, List<Car> cars) {
         this.name = name;
-        this.car = car;
+        this.cars = cars;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
+
 
     public String getName() {
         return name;
     }
 
-    public Car getCar() {
-        return car;
+    public List<Car> getCars() {
+        return cars;
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
-                ", car=" + car +
+                ", cars=" + cars +
                 '}';
     }
 }

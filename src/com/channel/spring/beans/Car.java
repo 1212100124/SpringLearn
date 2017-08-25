@@ -9,6 +9,10 @@ public class Car {
     private int count;
     private double price;
 
+    public Car(){
+
+    }
+
     public Car(String brand, String local, int count) {
         this.brand = brand;
         this.local = local;
@@ -19,6 +23,22 @@ public class Car {
         this.brand = brand;
         this.local = local;
         this.price = price;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     @Override
