@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+        通过静态工厂方法配置 bean
+        class 指向静态工厂方法的全类名
+        factory-method 指向静态工厂方法的名字
+        constructor-ags 如果工厂发那个法需要传入参数，则使用
+
+        这个方法并不需要创建class这么一个静态类
+    -->
+    <bean id="car" class="com.channel.spring.factory.StaticFactotry"
+          factory-method="getCar">
+        <constructor-arg value="audi"></constructor-arg>
+    </bean>
+
+    <!--
+        通过配置CarBeanFactory来产生工厂方法
+        CarBeanFactory implements FactoryBean
+        生成的是CarBeanFactory中的getObject 返回的类
+    -->
+    <bean id="car1" class="com.channel.spring.factory.CarBeanFactory">
+        <property name="brand" value="jackie"></property>
+    </bean>
+</beans>
